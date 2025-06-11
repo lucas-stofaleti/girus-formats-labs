@@ -1,0 +1,8 @@
+labs:
+  - id: yaml-fundamentos
+    title: Fundamentos do YAML
+    description: "Aprenda os fundamentos do YAML, a linguagem de serialização de dados amplamente utilizada em DevOps, Kubernetes, CI/CD e configuração de aplicações. Este laboratório guiado oferece uma introdução prática à leitura, escrita e manipulação de arquivos YAML, capacitando você a estruturar dados de forma clara e eficiente."
+    version: 1.0.0
+    duration: 25m
+    tags: [linux, text-processing, yaml]
+    url: https://raw.githubusercontent.com/lucas-stofaleti/girus-formats-labs/main/labs/yaml_fundamentos/lab.yaml
