@@ -5,4 +5,4 @@ labs:
     version: 1.0.0
     duration: 25m
     tags: [linux, text-processing, yaml]
-    url: https://raw.githubusercontent.com/lucas-stofaleti/girus-formats-labs/main/labs/yaml_fundamentos/lab.yaml
+    url: https://raw.githubusercontent.com/lucas-stofaleti/girus-formats-labs/feature/v0.3.0/labs/yaml_fundamentos/lab.yaml
