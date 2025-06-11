@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yaml-fundamentos
+  namespace: girus
+  labels:
+    app: girus-lab-template
+data:
+  lab.yaml: |
+    name: yaml-fundamentos
+    title: "Fundamentos do YAML"
+    description: "Aprenda os fundamentos do YAML, a linguagem de serialização de dados amplamente utilizada em DevOps, Kubernetes, CI/CD e configuração de aplicações. Este laboratório guiado oferece uma introdução prática à leitura, escrita e manipulação de arquivos YAML, capacitando você a estruturar dados de forma clara e eficiente."
+    duration: 25m
+    image: "linuxtips/girus-devops:0.1"
+    tasks:
+    - name: "Trabalhando com Estruturas Key-Value em YAML"
+      description: "Aprenda como definir e interpretar pares chave-valor em YAML, a estrutura mais comum para representar dados organizados."
+      steps:
+        - "O YAML (YAML Ain't Markup Language) é uma linguagem de serialização de dados muito usada em automação, infraestrutura como código e configuração de aplicações."
+        - "A estrutura mais básica em YAML é o par **chave: valor**, onde cada chave é associada a um valor simples, como texto, número ou booleano."
+        - "Vamos criar um arquivo YAML com alguns pares chave-valor:"
+        - |
+          cat > config.yaml << EOL
+          nome: Ana
+          idade: 29
+          ativo: true
+          cidade: São Paulo
+          EOL
+        - "Este arquivo define quatro chaves: `nome`, `idade`, `ativo` e `cidade`. Os valores podem ser strings (como 'Ana'), números (29) ou booleanos (`true`)."
+        - "Para visualizar o conteúdo do YAML, use o comando `cat`:"
+        - "`cat config.yaml`"
+        - "Podemos validar sua estrutura com o comando `yq` (um processador de YAML em linha de comando). Por exemplo, para exibir a idade:"
+        - "`yq '.idade' config.yaml`"
+        - "Esse comando deve retornar `29`, extraindo diretamente o valor da chave `idade`."
+      tips:
+        - type: "tip"
+          title: "Strings com espaços"
+          content: "Quando o valor contiver espaços ou caracteres especiais, é recomendado usar aspas: `cidade: 'São Paulo'`."
+        - type: "info"
+          title: "Indentação importa"
+          content: "YAML depende de indentação por espaços. Nunca use tabulações – sempre espaços para alinhar níveis de hierarquia."
+      validation:
+        - command: "yq '.nome' config.yaml"
+          expectedOutput: "Ana"
+          errorMessage: "Não foi possível encontrar o valor da chave 'nome'. Verifique se o arquivo foi criado corretamente."
+
+    - name: "Trabalhando com Arrays em YAML"
+      description: "Entenda como representar listas (arrays) em YAML, uma estrutura fundamental para agrupar múltiplos valores sob uma única chave."
+      steps:
+        - "Em YAML, listas são representadas com o uso de hífens (`-`) alinhados sob a mesma chave ou nível de indentação."
+        - "Vamos criar um arquivo com uma lista de linguagens de programação favoritas:"
+        - |
+          cat > linguagens.yaml << EOL
+          linguagens:
+            - Python
+            - JavaScript
+            - Go
+            - Rust
+          EOL
+        - "Este arquivo define uma chave `linguagens` cujo valor é uma lista contendo quatro itens."
+        - "Para visualizar o conteúdo da lista com `yq`:"
+        - "`yq '.linguagens' linguagens.yaml`"
+        - "Para acessar um item específico da lista (por exemplo, o segundo):"
+        - "`yq '.linguagens[1]' linguagens.yaml`"
+        - "O YAML é baseado em índices iniciando do zero, então o segundo item da lista tem índice `1`."
+      tips:
+        - type: "tip"
+          title: "Listas de objetos"
+          content: "Além de listas simples, YAML também permite listas de objetos, como configurações ou dados complexos agrupados por chave-valor."
+        - type: "info"
+          title: "Quebra de linha em listas"
+          content: "Cada item da lista deve estar em uma linha separada com o hífen no início."
+      validation:
+        - command: "yq '.linguagens[2]' linguagens.yaml"
+          expectedOutput: "Go"
+          errorMessage: "O terceiro item da lista não corresponde ao esperado. Verifique a indentação e estrutura da lista."
